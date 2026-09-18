@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>陈俊雄 & 薛若冰 婚礼请柬</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='4' y='2' width='3' height='3' fill='%23d4a017'/><rect x='9' y='2' width='3' height='3' fill='%23d4a017'/><rect x='2' y='5' width='12' height='3' fill='%23d4a017'/><rect x='4' y='8' width='8' height='3' fill='%23d4a017'/><rect x='6' y='11' width='4' height='2' fill='%23d4a017'/></svg>">
+<style>
+@font-face{
+  font-family:"FusionPixel";
+  src:url("https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/DExAb00Wjo45fMxtqaDcR4D4nZb") format("woff2");
+  font-weight:normal;font-style:normal;font-display:swap;
+}
+:root{
+  --wood-dark:#5b3a1e;
+  --wood:#8b5a2b;
+  --wood-light:#a9713b;
+  --cream:#fdf0d5;
+  --wheat:#e8c66a;
+  --gold:#d4a017;
+  --green:#7ea05b;
+  --green-dark:#5d7a42;
+  --text:#4a3b28;
+  --pink:#e8707a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{font-size:16px;}
+body{
+  font-family:"FusionPixel","Courier New","SFMono-Regular",Consolas,monospace;
+  background-color:#f0e2b6;
+  background-image:
+    linear-gradient(45deg,rgba(126,160,91,.10) 25%,transparent 25%),
+    linear-gradient(-45deg,rgba(126,160,91,.10) 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,rgba(126,160,91,.10) 75%),
+    linear-gradient(-45deg,transparent 75%,rgba(126,160,91,.10) 75%);
+  background-size:16px 16px;
+  min-height:100vh;color:var(--text);overflow-x:hidden;
+}
+
+/* ===== 星露谷式木框卡片 ===== */
+.wood-card{
+  background:var(--cream);
+  border:4px solid var(--wood-dark);
+  box-shadow:0 0 0 2px var(--wood),6px 6px 0 rgba(0,0,0,.28);
+  position:relative;
+}
+.wood-card::before,.wood-card::after{
+  content:"";position:absolute;width:14px;height:14px;
+  background:var(--gold);border:2px solid var(--wood-dark);
+}
+.wood-card::before{top:-6px;left:-6px;}
+.wood-card::after{bottom:-6px;right:-6px;}
+
+/* ===== 星露谷式按钮 ===== */
+.btn{
+  display:block;width:100%;padding:13px 16px;
+  font-family:inherit;font-size:15px;font-weight:bold;
+  color:var(--cream);background:var(--wood);
+  border:3px solid var(--wood-dark);
+  box-shadow:0 0 0 2px var(--gold),4px 4px 0 rgba(0,0,0,.3);
+  cursor:pointer;text-align:center;text-decoration:none;
+  transition:transform .08s,box-shadow .08s;
+}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 2px var(--gold),1px 1px 0 rgba(0,0,0,.3);}
+.btn-gold{background:var(--gold);color:var(--wood-dark);border-color:var(--wood-dark);}
+.btn-green{background:var(--green);color:#fff;}
+
+/* ===== 封面（fixed 覆盖层，滑走后移出视口，不影响下方滚动） ===== */
+#coverPage{
+  position:fixed;inset:0;z-index:999;
+  background:linear-gradient(180deg,#87b0e0 0%,#a8d0ec 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;
+  transition:transform 1s cubic-bezier(.65,0,.35,1);
+}
+#coverPage.slideUp{transform:translateY(-100%);pointer-events:none;}
+.cover-img-box{
+  width:min(96vw,560px);
+  border:4px solid var(--wood-dark);
+  box-shadow:0 0 0 4px var(--gold),8px 8px 0 rgba(0,0,0,.35);
+  overflow:hidden;background:#fff;
+}
+.cover-img-box img{width:100%;display:block;image-rendering:pixelated;}
+.cover-hint{
+  margin-top:18px;font-size:13px;color:var(--wood-dark);
+  background:var(--wheat);padding:8px 16px;border:3px solid var(--wood-dark);
+  box-shadow:3px 3px 0 rgba(0,0,0,.25);
+}
+
+/* ===== 请柬正文（正常文档流，body 可滚动） ===== */
+#invitePage{min-height:100vh;padding:24px 14px 48px;}
+.wrap{max-width:430px;margin:0 auto;}
+
+/* 顶部像素装饰 */
+.pix-deco{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:8px 0 14px;}
+.pix-star{
+  width:48px;height:48px;
+  background:
+    linear-gradient(var(--gold),var(--gold)) 18px 0/12px 12px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) 12px 12px/24px 12px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) 6px 24px/36px 12px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) 18px 36px/12px 12px no-repeat;
+}
+.pix-heart{
+  width:48px;height:40px;
+  background:
+    linear-gradient(var(--pink),var(--pink)) 8px 0/12px 12px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 28px 0/12px 12px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 0 12px/20px 12px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 16px 12px/20px 12px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 28px 12px/20px 12px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 8px 24px/32px 12px no-repeat,
+    linear-gradient(#d65a64,#d65a64) 16px 36px/16px 4px no-repeat;
+}
+.pix-gem{
+  width:48px;height:48px;
+  background:
+    linear-gradient(#8fd3e8,#8fd3e8) 18px 0/12px 12px no-repeat,
+    linear-gradient(#8fd3e8,#8fd3e8) 12px 12px/24px 12px no-repeat,
+    linear-gradient(#6ab8d4,#6ab8d4) 6px 24px/36px 12px no-repeat,
+    linear-gradient(#5aa5c4,#5aa5c4) 18px 36px/12px 12px no-repeat;
+}
+
+/* 标题 */
+.title-block{text-align:center;padding:22px 16px 18px;margin-bottom:16px;}
+.title-block h1{
+  font-size:30px;font-weight:bold;letter-spacing:6px;
+  color:var(--wood-dark);
+  text-shadow:2px 2px 0 var(--gold),4px 4px 0 rgba(0,0,0,.18);
+}
+.title-block .names{font-size:18px;font-weight:bold;color:#a1402f;letter-spacing:2px;margin-top:8px;}
+.title-block .names .amp{color:var(--gold);margin:0 6px;}
+.title-block .sub{margin-top:10px;font-size:12px;color:#9a835d;letter-spacing:2px;}
+
+/* 日期卡 */
+.date-card{
+  background:var(--cream);text-align:center;
+  border:4px solid var(--wood-dark);
+  box-shadow:0 0 0 2px var(--gold),5px 5px 0 rgba(0,0,0,.28);
+  padding:16px;margin-bottom:16px;
+}
+.date-card .lbl{font-size:12px;color:#9a835d;letter-spacing:2px;}
+.date-card .main{font-size:22px;font-weight:bold;color:var(--wood-dark);margin-top:4px;letter-spacing:1px;}
+.date-card .lunar{font-size:13px;color:#a1402f;font-weight:bold;margin-top:4px;}
+.date-card .lunar-hint{font-size:11px;color:#9a835d;margin-top:2px;}
+
+/* ===== 十月日历浮窗 ===== */
+.cal-modal{
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(0,0,0,.55);
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.cal-modal.show{display:flex;}
+.cal-card{
+  width:100%;max-width:330px;
+  max-height:88vh;
+  overflow-y:auto;
+  background:var(--cream);color:var(--text);
+  border:4px solid var(--wood-dark);
+  box-shadow:0 0 0 3px var(--gold),8px 8px 0 rgba(0,0,0,.4);
+  padding:16px;
+}
+.cal-head{text-align:center;border-bottom:3px dashed var(--wheat);padding-bottom:10px;margin-bottom:12px;}
+.cal-head h3{font-size:18px;color:var(--wood-dark);letter-spacing:2px;}
+.cal-head .sub{font-size:12px;color:var(--pink);font-weight:bold;margin-top:4px;}
+.cal-week,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;}
+.cal-week{font-size:11px;color:#9a835d;margin-bottom:6px;font-weight:bold;}
+.cal-cell{
+  height:36px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-size:14px;color:var(--text);
+  border:2px solid transparent;
+}
+.cal-cell .dnum{line-height:1.15;}
+.cal-cell .lday{font-size:9px;color:#9a835d;line-height:1.1;margin-top:1px;}
+.cal-cell.empty{visibility:hidden;}
+.cal-cell.wedding{
+  background:var(--pink);color:#fff;font-weight:bold;
+  border:2px solid var(--wood-dark);
+  box-shadow:0 0 0 2px var(--gold);
+}
+.cal-cell.wedding .heart{font-size:9px;line-height:1;margin-top:1px;}
+.cal-cell.wedding .lday{color:#ffe3e6;}
+.cal-close{margin-top:14px;text-align:center;}
+.cal-close .btn{padding:9px 0;font-size:13px;}
+.countdown{display:flex;justify-content:center;gap:8px;margin-top:12px;}
+.cd-cell{
+  background:var(--wood-dark);color:var(--wheat);
+  border:3px solid var(--wood);min-width:52px;padding:8px 4px;text-align:center;
+}
+.cd-num{font-size:20px;font-weight:bold;line-height:1;}
+.cd-label{font-size:10px;margin-top:4px;color:#d9c188;letter-spacing:1px;}
+
+/* 信息卡 */
+.info-card{padding:18px 16px;margin-bottom:16px;}
+.info-card h2{
+  font-size:16px;font-weight:bold;color:var(--green-dark);
+  letter-spacing:2px;text-align:center;
+  border-bottom:3px dashed var(--wheat);
+  padding-bottom:10px;margin-bottom:14px;
+}
+/* 时间轴：grid 三列，圆点像素级居中 */
+.timeline{display:flex;flex-direction:column;}
+.tl-item{
+  display:grid;grid-template-columns:58px 16px 1fr;
+  align-items:center;min-height:46px;
+}
+.tl-time{font-size:14px;font-weight:bold;color:#a1402f;text-align:right;padding-right:8px;}
+.tl-dot-col{position:relative;display:flex;justify-content:center;align-self:stretch;}
+.tl-dot{
+  width:12px;height:12px;background:var(--gold);
+  border:2px solid var(--wood-dark);
+  align-self:center;justify-self:center;
+}
+.tl-dot-col::before{
+  content:"";position:absolute;top:0;bottom:0;left:50%;
+  width:3px;margin-left:-1.5px;background:var(--wheat);
+}
+.tl-item:first-child .tl-dot-col::before{top:50%;}
+.tl-item:last-child .tl-dot-col::before{bottom:50%;}
+.tl-content{font-size:15px;font-weight:bold;color:var(--text);}
+
+/* 表单 */
+.rsvp-form label{
+  display:block;font-size:14px;font-weight:bold;margin:12px 0 6px;
+  color:var(--wood-dark);letter-spacing:1px;
+}
+.rsvp-form input[type=text],.rsvp-form input[type=number],.rsvp-form select,.rsvp-form textarea{
+  width:100%;padding:12px;font-family:inherit;font-size:16px;
+  border:3px solid var(--wood-dark);background:#fffdf5;
+  color:var(--text);outline:none;
+}
+.rsvp-form textarea{resize:vertical;min-height:60px;}
+.radio-group{display:flex;gap:10px;}
+.radio-chip{
+  flex:1;padding:11px 6px;border:3px solid var(--wood-dark);background:#fffdf5;
+  text-align:center;cursor:pointer;font-size:13px;font-weight:bold;
+  color:var(--text);
+}
+.radio-chip.active{background:var(--gold);color:var(--wood-dark);}
+
+/* 音乐按钮 */
+.music-toggle{
+  position:fixed;top:12px;right:12px;z-index:99;
+  width:44px;height:44px;background:var(--gold);
+  border:3px solid var(--wood-dark);box-shadow:0 0 0 2px var(--cream),3px 3px 0 rgba(0,0,0,.3);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.music-toggle.playing{background:var(--green);color:#fff;}
+
+/* ===== 点击像素猫头特效 ===== */
+.cat-pop{
+  position:fixed;z-index:2000;width:34px;height:34px;
+  pointer-events:none;
+  animation:catPop .9s ease-out forwards;
+}
+.cat-pop svg{width:100%;height:100%;image-rendering:pixelated;}
+@keyframes catPop{
+  0%{transform:translateY(0) scale(.5) rotate(-8deg);opacity:1;}
+  60%{opacity:1;}
+  100%{transform:translateY(-42px) scale(1.3) rotate(8deg);opacity:0;}
+}
+
+/* ===== 喜庆像素灯笼（固定角落） ===== */
+.lantern{
+  position:fixed;top:6px;width:28px;height:44px;z-index:40;
+  pointer-events:none;opacity:.95;
+  animation:lanternSwing 3s ease-in-out infinite;
+}
+.lantern.left{left:10px;transform-origin:top center;}
+.lantern.right{right:10px;transform-origin:top center;animation-delay:1.5s;}
+@keyframes lanternSwing{
+  0%,100%{transform:rotate(-4deg);}
+  50%{transform:rotate(4deg);}
+}
+.lantern::before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(var(--gold),var(--gold)) 50% 0/6px 5px no-repeat,
+    linear-gradient(var(--wood-dark),var(--wood-dark)) 4px 5px/20px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 6px 9px/16px 22px no-repeat,
+    linear-gradient(#f0a5ab,#f0a5ab) 10px 15px/8px 10px no-repeat,
+    linear-gradient(var(--wood-dark),var(--wood-dark)) 7px 31px/14px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 50% 35px/2px 9px no-repeat;
+}
+
+/* ===== 像素烟花特效 ===== */
+.firework{
+  position:fixed;z-index:1500;pointer-events:none;
+  width:0;height:0;
+}
+.fw-p{
+  position:absolute;width:6px;height:6px;
+  image-rendering:pixelated;
+  animation:fwBurst 1s ease-out forwards;
+}
+@keyframes fwBurst{
+  0%{transform:translate(0,0) scale(1);opacity:1;}
+  70%{opacity:1;}
+  100%{transform:translate(var(--tx),var(--ty)) scale(.6);opacity:0;}
+}
+
+/* ===== 背景像素星星/爱心装饰 ===== */
+.bg-deco{
+  position:fixed;z-index:30;pointer-events:none;
+  animation:twinkle 2.6s ease-in-out infinite;
+}
+.bg-deco.d1{width:14px;height:14px;top:18%;left:6%;}
+.bg-deco.d2{width:10px;height:10px;top:30%;right:8%;animation-delay:.8s;}
+.bg-deco.d3{width:12px;height:12px;bottom:12%;left:8%;animation-delay:1.6s;}
+.bg-deco.d4{width:10px;height:10px;bottom:22%;right:6%;animation-delay:2.1s;}
+.bg-deco.d5{width:12px;height:12px;top:52%;left:4%;animation-delay:1.2s;}
+.bg-deco.d6{width:14px;height:14px;top:8%;right:22%;animation-delay:.4s;}
+.bg-deco.d7{width:12px;height:12px;bottom:36%;left:14%;animation-delay:1.9s;}
+.bg-deco.d8{width:10px;height:10px;top:64%;right:10%;animation-delay:2.4s;}
+.bg-deco.d9{width:12px;height:12px;bottom:5%;right:24%;animation-delay:.9s;}
+@keyframes twinkle{
+  0%,100%{opacity:.55;transform:scale(1);}
+  50%{opacity:1;transform:scale(1.2);}
+}
+.bg-deco.star{background:
+  linear-gradient(var(--gold),var(--gold)) 50% 0/4px 4px no-repeat,
+  linear-gradient(var(--gold),var(--gold)) 33% 33%/4px 4px no-repeat,
+  linear-gradient(var(--gold),var(--gold)) 66% 33%/4px 4px no-repeat,
+  linear-gradient(var(--gold),var(--gold)) 17% 66%/4px 4px no-repeat,
+  linear-gradient(var(--gold),var(--gold)) 83% 66%/4px 4px no-repeat,
+  linear-gradient(var(--gold),var(--gold)) 50% 100%/4px 4px no-repeat;
+}
+.bg-deco.heart{background:
+  linear-gradient(var(--pink),var(--pink)) 30% 0/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 70% 0/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 15% 33%/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 45% 33%/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 75% 33%/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 30% 66%/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 60% 66%/4px 4px no-repeat,
+  linear-gradient(var(--pink),var(--pink)) 45% 100%/4px 4px no-repeat;
+}
+.bg-deco.flower{background:
+  linear-gradient(#e8707a,#e8707a) 30% 30%/4px 4px no-repeat,
+  linear-gradient(#e8707a,#e8707a) 70% 30%/4px 4px no-repeat,
+  linear-gradient(#e8707a,#e8707a) 30% 70%/4px 4px no-repeat,
+  linear-gradient(#e8707a,#e8707a) 70% 70%/4px 4px no-repeat,
+  linear-gradient(#f7d794,#f7d794) 50% 50%/4px 4px no-repeat;
+}
+.bg-deco.xi{
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:bold;color:var(--pink);line-height:1;
+  text-shadow:1px 1px 0 rgba(0,0,0,.15);
+}
+
+/* 标题两侧喜庆双喜方块 */
+.title-block h1 .xi{
+  display:inline-block;width:18px;height:18px;vertical-align:2px;
+  margin:0 10px;
+  background:
+    linear-gradient(#e8707a,#e8707a) 0 0/7px 4px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 11px 0/7px 4px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 0 14px/7px 4px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 11px 14px/7px 4px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 4px 0/10px 18px no-repeat;
+}
+
+/* 标题卡角落像素囍字贴纸 */
+.title-block .corner{
+  position:absolute;top:6px;font-size:20px;font-weight:bold;
+  color:var(--pink);line-height:1;
+  text-shadow:1px 1px 0 var(--wood-dark),2px 2px 0 var(--gold);
+}
+.title-block .corner.l{left:8px;transform:rotate(-8deg);}
+.title-block .corner.r{right:8px;transform:rotate(8deg);}
+
+/* ===== 顶部像素彩旗串 ===== */
+.flag-line{
+  position:fixed;top:0;left:0;right:0;z-index:45;
+  display:flex;justify-content:center;gap:3px;
+  pointer-events:none;height:18px;padding-top:3px;
+}
+.flag-line::before{
+  content:"";position:absolute;top:5px;left:0;right:0;height:2px;
+  background:var(--wood-dark);
+}
+.flag{width:9px;height:12px;position:relative;animation:flagWave 2.2s ease-in-out infinite;}
+.flag:nth-child(4n+1){background:#e8707a;}
+.flag:nth-child(4n+2){background:var(--gold);}
+.flag:nth-child(4n+3){background:var(--green);}
+.flag:nth-child(4n+4){background:#e8b84b;}
+.flag:nth-child(odd){animation-delay:.6s;}
+@keyframes flagWave{0%,100%{transform:translateY(0);}50%{transform:translateY(-2px);}}
+
+/* ===== 飘落像素爱心 ===== */
+.fall-heart{
+  position:fixed;top:-20px;z-index:31;pointer-events:none;
+  width:10px;height:10px;
+  background:
+    linear-gradient(var(--pink),var(--pink)) 30% 0/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 70% 0/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 15% 33%/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 45% 33%/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 75% 33%/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 30% 66%/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 60% 66%/4px 4px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 45% 100%/4px 4px no-repeat;
+  animation:fallDown linear infinite;
+}
+.fall-heart.f1{left:10%;animation-duration:9s;}
+.fall-heart.f2{left:36%;animation-duration:11s;animation-delay:3s;opacity:.5;}
+.fall-heart.f3{left:62%;animation-duration:10s;animation-delay:6s;}
+.fall-heart.f4{left:85%;animation-duration:12s;animation-delay:1.5s;opacity:.5;}
+@keyframes fallDown{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  10%{opacity:.7;}
+  100%{transform:translateY(106vh) rotate(340deg);opacity:0;}
+}
+
+/* ===== 分隔条：囍♥分隔 ===== */
+.divider{display:flex;justify-content:center;align-items:center;gap:10px;margin:18px 0 16px;}
+.divider .d-line{flex:1;height:3px;
+  background:repeating-linear-gradient(90deg,var(--wheat) 0 7px,transparent 7px 14px);}
+.divider .d-xi{font-size:20px;font-weight:bold;color:var(--pink);line-height:1;
+  text-shadow:1px 1px 0 var(--gold);}
+.divider .d-heart{width:13px;height:11px;
+  background:
+    linear-gradient(var(--pink),var(--pink)) 3px 0/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 7px 0/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 0 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 3px 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 7px 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 10px 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 2px 6px/9px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 5px 9px/3px 2px no-repeat;}
+.divider .d-flower{width:9px;height:9px;
+  background:
+    linear-gradient(#e8707a,#e8707a) 0 0/3px 3px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 6px 0/3px 3px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 0 6px/3px 3px no-repeat,
+    linear-gradient(#e8707a,#e8707a) 6px 6px/3px 3px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) 3px 3px/3px 3px no-repeat;}
+
+/* 底部 */
+.footer{text-align:center;margin-top:28px;font-size:12px;color:#8a744c;line-height:1.9;}
+.footer-garland{
+  display:flex;justify-content:center;align-items:center;gap:10px;
+  margin-bottom:10px;font-size:17px;font-weight:bold;color:var(--pink);
+}
+.footer-garland .g-heart{width:11px;height:10px;
+  background:
+    linear-gradient(var(--pink),var(--pink)) 2px 0/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 6px 0/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 0 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 3px 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 6px 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 8px 3px/3px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 1px 6px/8px 3px no-repeat,
+    linear-gradient(var(--pink),var(--pink)) 4px 9px/3px 1px no-repeat;}
+.footer-garland .g-flower{width:8px;height:8px;
+  background:
+    linear-gradient(var(--green),var(--green)) 0 0/3px 3px no-repeat,
+    linear-gradient(var(--green),var(--green)) 5px 0/3px 3px no-repeat,
+    linear-gradient(var(--green),var(--green)) 0 5px/3px 3px no-repeat,
+    linear-gradient(var(--green),var(--green)) 5px 5px/3px 3px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) 2px 2px/4px 4px no-repeat;}
+.pix-flower{
+  display:inline-block;width:10px;height:10px;background:var(--pink);
+  border:2px solid var(--wood-dark);margin:0 3px;vertical-align:middle;
+}
+.pix-flower:nth-child(2){background:var(--gold);}
+.pix-flower:nth-child(3){background:var(--green);}
+
+@media(max-width:360px){
+  .title-block h1{font-size:24px;letter-spacing:4px;}
+  .cd-cell{min-width:46px;}
+  .cd-num{font-size:18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- 封面：fixed 覆盖层，滑走后移出视口，不会挡住下方滚动 -->
+<div id="coverPage">
+  <div class="cover-img-box">
+    <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/PzP6bBbTdojloqx3OalcpTbvnH8" alt="像素猫咪婚礼封面">
+  </div>
+  <div class="cover-hint" id="coverHint">3 秒后自动进入请柬</div>
+</div>
+
+<!-- 音乐开关 -->
+<div class="music-toggle" id="musicToggle">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>
+</div>
+
+<!-- 喜庆装饰：左右像素灯笼 -->
+<div class="lantern left"></div>
+<div class="lantern right"></div>
+
+<!-- 顶部像素彩旗串 -->
+<div class="flag-line">
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  <span class="flag"></span><span class="flag"></span>
+</div>
+
+<!-- 飘落像素爱心 -->
+<div class="fall-heart f1"></div>
+<div class="fall-heart f2"></div>
+<div class="fall-heart f3"></div>
+<div class="fall-heart f4"></div>
+
+<!-- 背景像素星星/爱心/小花/囍 -->
+<div class="bg-deco star d1"></div>
+<div class="bg-deco heart d2"></div>
+<div class="bg-deco flower d3"></div>
+<div class="bg-deco star d4"></div>
+<div class="bg-deco heart d5"></div>
+<div class="bg-deco xi d6">囍</div>
+<div class="bg-deco flower d7"></div>
+<div class="bg-deco heart d8"></div>
+<div class="bg-deco star d9"></div>
+
+<!-- 请柬正文：正常文档流，可自由滚动 -->
+<div id="invitePage">
+  <div class="wrap">
+
+    <div class="pix-deco">
+      <div class="pix-star"></div>
+      <div class="pix-heart"></div>
+      <div class="pix-gem"></div>
+    </div>
+
+    <div class="wood-card title-block">
+      <span class="corner l">囍</span>
+      <span class="corner r">囍</span>
+      <h1><span class="xi"></span>我们结婚啦<span class="xi"></span></h1>
+      <div class="names">
+        <span>陈俊雄</span><span class="amp">✦</span><span>薛若冰</span>
+      </div>
+      <div class="sub">— 诚邀您见证我们的幸福时刻 —</div>
+    </div>
+
+    <div class="date-card" id="dateCard">
+      <div class="lbl">婚礼日期</div>
+      <div class="main">2026年10月3日 18:00</div>
+      <div class="lunar">农历八月廿三 · 星期六</div>
+      <div class="lunar-hint">点击查看十月日历</div>
+      <div class="countdown">
+        <div class="cd-cell"><div class="cd-num" id="cdD">--</div><div class="cd-label">天</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdH">--</div><div class="cd-label">时</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdM">--</div><div class="cd-label">分</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdS">--</div><div class="cd-label">秒</div></div>
+      </div>
+    </div>
+
+    <a href="#" class="btn" id="mapBtn">
+      莆田市凯天青山城喜庆宴会厅二楼
+      <div style="font-size:11px;font-weight:normal;margin-top:4px;opacity:.85;">点击打开地图导航</div>
+    </a>
+
+    <div style="height:16px;"></div>
+
+    <div class="divider">
+      <span class="d-line"></span><span class="d-heart"></span>
+      <span class="d-xi">囍</span>
+      <span class="d-heart"></span><span class="d-line"></span>
+    </div>
+
+    <div class="wood-card info-card">
+      <h2>婚礼日程</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">18:00</div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-content">吃吃吃</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">18:30</div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-content">吃吃吃</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:30</div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-content">吃吃吃</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">
+      <span class="d-line"></span><span class="d-flower"></span>
+      <span class="d-heart"></span><span class="d-xi">囍</span>
+      <span class="d-heart"></span><span class="d-flower"></span><span class="d-line"></span>
+    </div>
+
+    <div class="wood-card info-card">
+      <h2>回执 RSVP</h2>
+      <form class="rsvp-form" id="rsvpForm">
+        <label>您的称呼</label>
+        <input type="text" id="rsvpName" placeholder="请输入姓名" required>
+
+        <label>是否出席</label>
+        <div class="radio-group" id="attendGroup">
+          <div class="radio-chip active" data-val="出席">出席</div>
+          <div class="radio-chip" data-val="可能出席">待定</div>
+          <div class="radio-chip" data-val="无法出席">遗憾缺席</div>
+        </div>
+
+        <label>出席人数</label>
+        <input type="number" id="rsvpCount" min="1" max="10" value="1">
+
+        <label>备注</label>
+        <textarea id="rsvpNote" placeholder="其他需要告知的事宜"></textarea>
+
+        <div style="height:16px;"></div>
+        <button type="button" class="btn btn-green" id="mailBtn">邮件回执</button>
+        <div style="font-size:11px;color:#9a835d;margin-top:8px;text-align:center;">
+          填写后点击按钮，自动打开邮件发送
+        </div>
+      </form>
+    </div>
+
+    <div class="footer">
+      <div class="footer-garland">
+        <span>囍</span><span class="g-heart"></span><span class="g-flower"></span>
+        <span class="g-heart"></span><span>囍</span>
+      </div>
+      <span class="pix-flower"></span>
+      <span class="pix-flower"></span>
+      <span class="pix-flower"></span>
+      <br>
+      敬备薄宴 · 静候光临<br>
+      期待您与家人一同见证
+    </div>
+
+  </div>
+</div>
+
+<!-- 十月日历浮窗（长按日期弹出） -->
+<div class="cal-modal" id="calModal">
+  <div class="cal-card">
+    <div class="cal-head">
+      <h3>2026年10月</h3>
+      <div class="sub">♥ 婚礼当天：10月3日（八月廿三）</div>
+    </div>
+    <div class="cal-week">
+      <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-close">
+      <button type="button" class="btn btn-gold" id="calCloseBtn">关 闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== 配置区 ==========
+const WEDDING = {
+  bride: "薛若冰", groom: "陈俊雄",
+  year: 2026, month: 10, day: 3, hour: 18, minute: 0,
+  venueAddress: "莆田市凯天青山城喜庆宴会厅二楼",
+  mapSearch: "莆田市凯天青山城喜庆宴会厅",
+  rsvpEmail: "603876549@qq.com"
+};
+const pad = n => String(n).padStart(2,"0");
+
+// ========== 封面自动滑走 + 点击跳过 ==========
+const coverPage = document.getElementById("coverPage");
+const coverHint = document.getElementById("coverHint");
+let coverSec = 3;
+const coverTimer = setInterval(() => {
+  coverSec--;
+  if(coverSec > 0) coverHint.textContent = coverSec + " 秒后自动进入请柬";
+  else if(coverSec === 0) coverHint.textContent = "正在打开请柬...";
+  else { clearInterval(coverTimer); openInvite(); }
+}, 1000);
+coverPage.addEventListener("click", () => { clearInterval(coverTimer); openInvite(); });
+
+function openInvite(){
+  coverPage.classList.add("slideUp");
+  launchFireworks();
+  tryStartMusic();
+}
+
+// ========== 像素烟花：进入请柬时绽放 ==========
+function launchFireworks(){
+  const colors = ["#d4a017","#e8707a","#7ea05b","#8fd3e8","#e8b84b","#c98fda","#f0a5ab","#f7d794","#6ab8d4"];
+  // 八朵烟花，分布全屏依次绽放
+  const spots = [
+    [18,22],[52,16],[82,26],[28,45],[68,50],[14,68],[50,72],[86,66]
+  ];
+  spots.forEach((pos, n) => {
+    setTimeout(() => {
+      const fw = document.createElement("div");
+      fw.className = "firework";
+      fw.style.left = pos[0] + "vw";
+      fw.style.top = pos[1] + "vh";
+      document.body.appendChild(fw);
+      const color = colors[n % colors.length];
+      const count = 20;
+      for(let i = 0; i < count; i++){
+        const p = document.createElement("div");
+        p.className = "fw-p";
+        const ang = (Math.PI*2*i)/count + Math.random()*.3;
+        const dist = 40 + Math.random()*48;
+        p.style.setProperty("--tx", Math.cos(ang)*dist + "px");
+        p.style.setProperty("--ty", Math.sin(ang)*dist + "px");
+        p.style.background = color;
+        p.style.boxShadow = "4px 0 0 " + color;
+        fw.appendChild(p);
+      }
+      setTimeout(() => fw.remove(), 1150);
+    }, n*170);
+  });
+}
+
+// ========== 倒计时 ==========
+const targetDate = new Date(WEDDING.year, WEDDING.month-1, WEDDING.day, WEDDING.hour, WEDDING.minute).getTime();
+function updateCountdown(){
+  let diff = Math.max(0, targetDate - Date.now());
+  const d = Math.floor(diff/86400000); diff -= d*86400000;
+  const h = Math.floor(diff/3600000); diff -= h*3600000;
+  const m = Math.floor(diff/60000); diff -= m*60000;
+  const s = Math.floor(diff/1000);
+  document.getElementById("cdD").textContent = d;
+  document.getElementById("cdH").textContent = pad(h);
+  document.getElementById("cdM").textContent = pad(m);
+  document.getElementById("cdS").textContent = pad(s);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ========== 地图（搜索用去“二楼”的关键词，显示保持不变） ==========
+document.getElementById("mapBtn").href = "geo:0,0?q=" + encodeURIComponent(WEDDING.mapSearch);
+document.getElementById("mapBtn").addEventListener("click", () => {
+  setTimeout(() => { if(!document.hidden) showToast("如未唤起地图，请手动搜索：" + WEDDING.mapSearch); }, 2000);
+});
+
+// ========== RSVP（仅邮件回执） ==========
+let attendValue = "出席";
+document.querySelectorAll("#attendGroup .radio-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll("#attendGroup .radio-chip").forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+    attendValue = chip.dataset.val;
+  });
+});
+document.getElementById("mailBtn").addEventListener("click", () => {
+  const name = document.getElementById("rsvpName").value.trim();
+  if(!name){ showToast("请先填写您的称呼"); return; }
+  const count = document.getElementById("rsvpCount").value;
+  const note = document.getElementById("rsvpNote").value.trim();
+  const subject = encodeURIComponent(`婚礼回执 - ${name}`);
+  const body = encodeURIComponent(`您好，我是 ${name}\n出席状态：${attendValue}\n出席人数：${count} 人\n备注：${note || "无"}\n`);
+  window.location.href = `mailto:${WEDDING.rsvpEmail}?subject=${subject}&body=${body}`;
+  showToast("即将打开邮件，发送即可");
+});
+
+// ========== Toast ==========
+function showToast(msg){
+  let t = document.createElement("div");
+  t.textContent = msg;
+  t.style.cssText = "position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--wood-dark);color:var(--wheat);padding:16px 20px;border:3px solid var(--gold);box-shadow:4px 4px 0 rgba(0,0,0,.4);font-size:14px;z-index:999;max-width:80%;text-align:center;line-height:1.6;";
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2500);
+}
+
+// ========== 8-bit 背景音乐（低音量，进入请柬后自动播放） ==========
+let audioCtx = null, musicPlaying = false, musicTimer = null;
+const melody = [523,659,784,659,523,659,784,659,587,698,880,698,587,698,880,698,523,659,784,1047,784,659,523,0];
+let noteIdx = 0;
+function playNote(freq){
+  if(!audioCtx || freq === 0) return;
+  const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+  osc.type = "square"; osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+  osc.connect(gain).connect(audioCtx.destination);
+  osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+}
+function tryStartMusic(resume){
+  if(musicPlaying) return;
+  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if(audioCtx.state === "suspended") audioCtx.resume();
+  musicPlaying = true;
+  document.getElementById("musicToggle").classList.add("playing");
+  if(!resume) noteIdx = 0;
+  playNote(melody[noteIdx]); noteIdx = (noteIdx+1) % melody.length;
+  musicTimer = setInterval(() => { playNote(melody[noteIdx]); noteIdx = (noteIdx+1) % melody.length; }, 300);
+}
+function stopMusic(){
+  musicPlaying = false;
+  document.getElementById("musicToggle").classList.remove("playing");
+  if(musicTimer){ clearInterval(musicTimer); musicTimer = null; }
+}
+document.getElementById("musicToggle").addEventListener("click", () => {
+  musicPlaying ? stopMusic() : tryStartMusic();
+});
+
+// 页面切到后台/锁屏时自动停止音乐，回到页面时若之前正在播放则恢复
+let musicWasPlaying = false;
+document.addEventListener("visibilitychange", () => {
+  if(document.hidden){
+    if(musicPlaying){ musicWasPlaying = true; stopMusic(); }
+  } else {
+    if(musicWasPlaying){ musicWasPlaying = false; tryStartMusic(true); }
+  }
+});
+
+// ========== 点击任意位置：像素猫猫头特效 ==========
+const PAW_SVG = '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="1" width="3" height="3" fill="#d4a017"/><rect x="10" y="1" width="3" height="3" fill="#d4a017"/><rect x="2" y="3" width="12" height="10" fill="#e8b84b"/><rect x="3" y="4" width="2" height="2" fill="#5b3a1e"/><rect x="11" y="4" width="2" height="2" fill="#5b3a1e"/><rect x="5" y="6" width="2" height="2" fill="#5b3a1e"/><rect x="9" y="6" width="2" height="2" fill="#5b3a1e"/><rect x="7" y="8" width="2" height="1" fill="#e8707a"/><rect x="1" y="7" width="2" height="1" fill="#5b3a1e"/><rect x="13" y="7" width="2" height="1" fill="#5b3a1e"/><rect x="0" y="8" width="1" height="1" fill="#5b3a1e"/><rect x="15" y="8" width="1" height="1" fill="#5b3a1e"/></svg>';
+let lastCatPop = 0;
+document.addEventListener("click", (e) => {
+  const now = Date.now();
+  if(now - lastCatPop < 130) return; // 限流，避免连点刷屏
+  lastCatPop = now;
+  const paw = document.createElement("div");
+  paw.className = "cat-pop";
+  paw.innerHTML = PAW_SVG;
+  paw.style.left = (e.clientX - 17) + "px";
+  paw.style.top = (e.clientY - 17) + "px";
+  document.body.appendChild(paw);
+  setTimeout(() => paw.remove(), 950);
+});
+
+// ========== 手指触碰日期卡：十月日历浮窗（按下显示、松开关闭） ==========
+const calModal = document.getElementById("calModal");
+const calGrid = document.getElementById("calGrid");
+const calWeddingDay = WEDDING.day;
+// 2026年10月农历对照（1号~31号）：1-9为八月廿一至廿九，10起为九月初一至廿二
+const LUNAR_10 = [21,22,23,24,25,26,27,28,29,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22];
+function lunarName(d){
+  const t = ["","一","二","三","四","五","六","七","八","九","十"];
+  if(d === 10) return "初十";
+  if(d === 20) return "二十";
+  if(d === 30) return "三十";
+  if(d < 10) return "初" + t[d];
+  if(d < 20) return "十" + t[d % 10];
+  return "廿" + t[d % 10];
+}
+function buildCalendar(){
+  const y = WEDDING.year, m = WEDDING.month;
+  const firstDow = new Date(y, m-1, 1).getDay(); // 0=周日
+  const startIdx = (firstDow + 6) % 7; // 转为周一开头
+  const days = new Date(y, m, 0).getDate();
+  let html = "";
+  for(let i = 0; i < startIdx; i++) html += '<div class="cal-cell empty"></div>';
+  for(let d = 1; d <= days; d++){
+    if(d === calWeddingDay){
+      html += '<div class="cal-cell wedding"><span class="dnum">' + d + '</span><span class="heart">♥</span><span class="lday">' + lunarName(LUNAR_10[d-1]) + '</span></div>';
+    } else {
+      html += '<div class="cal-cell"><span class="dnum">' + d + '</span><span class="lday">' + lunarName(LUNAR_10[d-1]) + '</span></div>';
+    }
+  }
+  calGrid.innerHTML = html;
+}
+buildCalendar();
+
+function showCalendar(){ calModal.classList.add("show"); }
+function hideCalendar(){ calModal.classList.remove("show"); }
+document.getElementById("calCloseBtn").addEventListener("click", hideCalendar);
+calModal.addEventListener("click", (e) => { if(e.target === calModal) hideCalendar(); });
+
+const dateCard = document.getElementById("dateCard");
+dateCard.addEventListener("click", showCalendar);
+</script>
+</body>
+</html>
