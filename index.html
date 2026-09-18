@@ -183,12 +183,6 @@ body{
 .cal-cell.wedding .lday{color:#ffe3e6;}
 .cal-close{margin-top:14px;text-align:center;}
 .cal-close .btn{padding:9px 0;font-size:13px;}
-
-/* 地图导航选择 */
-.map-card .map-opt{font-size:16px;letter-spacing:2px;}
-.map-card .map-opt.amap{background:var(--green);color:#fff;}
-.map-card .map-opt.baidu{background:var(--gold);color:var(--wood-dark);}
-.map-card .map-opt.tencent{background:#4a7bb5;color:#fff;}
 .countdown{display:flex;justify-content:center;gap:8px;margin-top:12px;}
 .cd-cell{
   background:var(--wood-dark);color:var(--wheat);
@@ -560,10 +554,10 @@ body{
       </div>
     </div>
 
-    <a href="#" class="btn" id="mapBtn">
+    <button type="button" class="btn" id="mapBtn">
       莆田市凯天青山城喜庆宴会厅二楼
-      <div style="font-size:11px;font-weight:normal;margin-top:4px;opacity:.85;">点击选择地图导航</div>
-    </a>
+      <div style="font-size:11px;font-weight:normal;margin-top:4px;opacity:.85;">点击复制地址</div>
+    </button>
 
     <div style="height:16px;"></div>
 
@@ -643,7 +637,7 @@ body{
   </div>
 </div>
 
-<!-- 十月日历浮窗（长按日期弹出） -->
+<!-- 十月日历浮窗（点击日期弹出） -->
 <div class="cal-modal" id="calModal">
   <div class="cal-card">
     <div class="cal-head">
@@ -656,24 +650,6 @@ body{
     <div class="cal-grid" id="calGrid"></div>
     <div class="cal-close">
       <button type="button" class="btn btn-gold" id="calCloseBtn">关 闭</button>
-    </div>
-  </div>
-</div>
-
-<!-- 地图导航选择浮窗 -->
-<div class="cal-modal" id="mapModal">
-  <div class="cal-card map-card">
-    <div class="cal-head">
-      <h3>选择地图导航</h3>
-      <div class="sub">没装对应应用时会打开网页版地图</div>
-    </div>
-    <button type="button" class="btn map-opt amap" data-key="amap">高德地图</button>
-    <div style="height:10px;"></div>
-    <button type="button" class="btn map-opt baidu" data-key="baidu">百度地图</button>
-    <div style="height:10px;"></div>
-    <button type="button" class="btn map-opt tencent" data-key="tencent">腾讯地图</button>
-    <div class="cal-close">
-      <button type="button" class="btn btn-gold" id="mapCloseBtn">取 消</button>
     </div>
   </div>
 </div>
@@ -755,45 +731,20 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ========== 地图：点击弹出导航选择，优先唤起 App，未唤起自动打开网页版；微信内直接网页版 ==========
-const mapModal = document.getElementById("mapModal");
-function showMapModal(){ mapModal.classList.add("show"); }
-function hideMapModal(){ mapModal.classList.remove("show"); }
-document.getElementById("mapCloseBtn").addEventListener("click", hideMapModal);
-mapModal.addEventListener("click", (e) => { if(e.target === mapModal) hideMapModal(); });
-
-const mapSearchQ = encodeURIComponent(WEDDING.mapSearch);
-const MAPS = {
-  amap:    { scheme: "https://uri.amap.com/search?keyword=" + mapSearchQ + "&callnative=1", web: "https://uri.amap.com/search?keyword=" + mapSearchQ },
-  baidu:   { scheme: "baidumap://map/search?query=" + mapSearchQ, web: "https://map.baidu.com/search/" + mapSearchQ },
-  tencent: { scheme: "qqmap://map/search?keyword=" + mapSearchQ + "&referer=weixin", web: "https://apis.map.qq.com/uri/v1/search?keyword=" + mapSearchQ }
-};
-const isWechat = /MicroMessenger/i.test(navigator.userAgent);
-function openMap(key){
-  hideMapModal();
-  const m = MAPS[key];
-  if(isWechat){
-    // 微信内置浏览器拦截一切唤起 App 的跳转，只能打开网页版，并引导用户去系统浏览器
-    showToast("微信内无法直接唤起地图App，已打开网页版；点右上角「···」选「在浏览器中打开」可唤起App");
-    window.location.href = m.web;
-    return;
-  }
-  // 系统浏览器：先尝试唤起 App，1.6 秒内未唤起（页面未切走）则打开网页版兜底
-  let fired = false;
-  const onVis = () => { fired = true; };
-  document.addEventListener("visibilitychange", onVis);
-  window.location.href = m.scheme;
-  setTimeout(() => {
-    document.removeEventListener("visibilitychange", onVis);
-    if(!fired){ window.location.href = m.web; }
-  }, 1600);
+// ========== 地址：点击一键复制 ==========
+function copyText(txt){
+  const ta = document.createElement("textarea");
+  ta.value = txt;
+  ta.style.cssText = "position:fixed;left:-9999px;top:0;opacity:0;";
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  let ok = false;
+  try{ ok = document.execCommand("copy"); }catch(e){ ok = false; }
+  document.body.removeChild(ta);
+  showToast(ok ? ("地址已复制：" + txt) : ("复制失败，请长按手动复制：" + txt));
 }
-document.querySelectorAll(".map-opt").forEach(btn => {
-  btn.addEventListener("click", () => openMap(btn.dataset.key));
-});
-document.getElementById("mapBtn").addEventListener("click", (e) => {
-  e.preventDefault();
-  showMapModal();
+document.getElementById("mapBtn").addEventListener("click", () => {
+  copyText(WEDDING.venueAddress);
 });
 
 // ========== RSVP（仅邮件回执） ==========
