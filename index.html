@@ -731,10 +731,10 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ========== 地图（搜索用去“二楼”的关键词，显示保持不变） ==========
-document.getElementById("mapBtn").href = "geo:0,0?q=" + encodeURIComponent(WEDDING.mapSearch);
+// ========== 地图（高德官方搜索链接，安卓/苹果通用：唤起 App 或打开网页地图） ==========
+document.getElementById("mapBtn").href = "https://uri.amap.com/search?keyword=" + encodeURIComponent(WEDDING.mapSearch);
 document.getElementById("mapBtn").addEventListener("click", () => {
-  setTimeout(() => { if(!document.hidden) showToast("如未唤起地图，请手动搜索：" + WEDDING.mapSearch); }, 2000);
+  setTimeout(() => { if(!document.hidden) showToast("正在打开高德地图搜索：" + WEDDING.mapSearch); }, 2000);
 });
 
 // ========== RSVP（仅邮件回执） ==========
