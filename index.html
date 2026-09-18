@@ -183,6 +183,12 @@ body{
 .cal-cell.wedding .lday{color:#ffe3e6;}
 .cal-close{margin-top:14px;text-align:center;}
 .cal-close .btn{padding:9px 0;font-size:13px;}
+
+/* 地图导航选择 */
+.map-card .map-opt{font-size:16px;letter-spacing:2px;}
+.map-card .map-opt.amap{background:var(--green);color:#fff;}
+.map-card .map-opt.baidu{background:var(--gold);color:var(--wood-dark);}
+.map-card .map-opt.tencent{background:#4a7bb5;color:#fff;}
 .countdown{display:flex;justify-content:center;gap:8px;margin-top:12px;}
 .cd-cell{
   background:var(--wood-dark);color:var(--wheat);
@@ -556,7 +562,7 @@ body{
 
     <a href="#" class="btn" id="mapBtn">
       莆田市凯天青山城喜庆宴会厅二楼
-      <div style="font-size:11px;font-weight:normal;margin-top:4px;opacity:.85;">点击打开地图导航</div>
+      <div style="font-size:11px;font-weight:normal;margin-top:4px;opacity:.85;">点击选择地图导航</div>
     </a>
 
     <div style="height:16px;"></div>
@@ -654,6 +660,24 @@ body{
   </div>
 </div>
 
+<!-- 地图导航选择浮窗 -->
+<div class="cal-modal" id="mapModal">
+  <div class="cal-card map-card">
+    <div class="cal-head">
+      <h3>选择地图导航</h3>
+      <div class="sub">没装对应应用时会打开网页版地图</div>
+    </div>
+    <a class="btn map-opt amap" href="#" target="_blank" rel="noopener">高德地图</a>
+    <div style="height:10px;"></div>
+    <a class="btn map-opt baidu" href="#" target="_blank" rel="noopener">百度地图</a>
+    <div style="height:10px;"></div>
+    <a class="btn map-opt tencent" href="#" target="_blank" rel="noopener">腾讯地图</a>
+    <div class="cal-close">
+      <button type="button" class="btn btn-gold" id="mapCloseBtn">取 消</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ========== 配置区 ==========
 const WEDDING = {
@@ -731,10 +755,25 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ========== 地图（高德官方搜索链接，安卓/苹果通用：唤起 App 或打开网页地图） ==========
-document.getElementById("mapBtn").href = "https://uri.amap.com/search?keyword=" + encodeURIComponent(WEDDING.mapSearch);
-document.getElementById("mapBtn").addEventListener("click", () => {
-  setTimeout(() => { if(!document.hidden) showToast("正在打开高德地图搜索：" + WEDDING.mapSearch); }, 2000);
+// ========== 地图：点击弹出导航软件选择浮窗（高德/百度/腾讯，没装 App 自动打开网页版） ==========
+const mapModal = document.getElementById("mapModal");
+function showMapModal(){ mapModal.classList.add("show"); }
+function hideMapModal(){ mapModal.classList.remove("show"); }
+document.getElementById("mapCloseBtn").addEventListener("click", hideMapModal);
+mapModal.addEventListener("click", (e) => { if(e.target === mapModal) hideMapModal(); });
+
+const mapSearchQ = encodeURIComponent(WEDDING.mapSearch);
+const mapOpts = {
+  amap:   "https://uri.amap.com/search?keyword=" + mapSearchQ,
+  baidu:  "https://map.baidu.com/search/" + mapSearchQ,
+  tencent:"https://apis.map.qq.com/uri/v1/search?keyword=" + mapSearchQ
+};
+document.querySelectorAll(".map-opt").forEach(a => {
+  a.href = mapOpts[a.classList.contains("amap") ? "amap" : a.classList.contains("baidu") ? "baidu" : "tencent"];
+});
+document.getElementById("mapBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  showMapModal();
 });
 
 // ========== RSVP（仅邮件回执） ==========
